@@ -26,9 +26,12 @@
 package org.mastodon4j.core;
 
 import feign.Feign;
+import feign.InvocationContext;
 import feign.Response;
 import feign.RequestTemplate;
+import feign.ResponseInterceptor;
 import feign.Util;
+import feign.codec.ErrorDecoder;
 import feign.http2client.Http2Client;
 import org.mastodon4j.core.api.Accounts;
 import org.mastodon4j.core.api.Apps;
@@ -101,6 +104,7 @@ public class MastodonClient implements MastodonApi {
 
         final Feign.Builder builder = Feign.builder()
                 .client(new Http2Client(httpClient))
+                .dismiss404()
                 .encoder(MastodonClient::encode)
                 .decoder(MastodonClient::decode)
                 .requestInterceptor(template -> template.header("User-Agent", USER_AGENT_NAME))

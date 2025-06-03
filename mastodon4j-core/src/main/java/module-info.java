@@ -33,4 +33,5 @@ module org.mastodon4j.core {
     requires feign.core;
     requires feign.java11;
     requires feign.json;
+    requires java.desktop;
 }

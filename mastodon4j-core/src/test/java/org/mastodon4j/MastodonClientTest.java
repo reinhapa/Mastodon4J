@@ -30,7 +30,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperties;
 import org.mastodon4j.core.MastodonClient;
 import org.mastodon4j.core.api.Accounts;
 import org.mastodon4j.core.api.BaseMastodonApi;
@@ -286,6 +285,14 @@ class MastodonClientTest {
             assertThat(timelines.home()).isNotNull().satisfies(statuses -> {
                 log(statuses);
                 assertThat(statuses).hasAtLeastOneElementOfType(Status.class);
+            });
+        }
+
+        @Test
+        void link() {
+            assertThat(timelines.link("https://cdn.fosstodon.org/media_attachments/files/114/608/502/397/478/400/original/2b4b0d485d0556e5.png")).isNotNull().satisfies(statuses -> {
+                log(statuses);
+                assertThat(statuses).hasOnlyElementsOfType(Status.class);
             });
         }
 

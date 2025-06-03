@@ -25,10 +25,13 @@
  */
 package org.mastodon4j.core;
 
+import java.io.Serial;
+
 /**
  * An exception class that will be thrown when MastodonAPI calls are failed.
  */
 public class MastodonException extends Exception {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public MastodonException(Throwable cause) {
